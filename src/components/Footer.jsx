@@ -38,7 +38,7 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-6 text-black">Quick Links</h3>
             <ul className="space-y-3">
               <li>
                 <a href="#home" className="text-gray-400 hover:text-[#2ECC40] transition-colors">
@@ -52,7 +52,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#pricing" className="text-gray-400 hover:text-[#2ECC40] transition-colors">
-                  Pricing
+                  Insights
                 </a>
               </li>
               <li>
@@ -60,41 +60,26 @@ const Footer = () => {
                   About Us
                 </a>
               </li>
-              <li>
-                <a href="#blog" className="text-gray-400 hover:text-[#2ECC40] transition-colors">
-                  Blog
-                </a>
-              </li>
             </ul>
           </div>
           
           {/* Resources */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Resources</h3>
+            <h3 className="text-lg font-bold mb-6 text-black" >More</h3>
             <ul className="space-y-3">
               <li>
                 <a href="#" className="text-gray-400 hover:text-[#2ECC40] transition-colors">
-                  Documentation
+                  Join Us
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-[#2ECC40] transition-colors">
-                  API Reference
+                  Find Us
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-[#2ECC40] transition-colors">
                   Case Studies
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-[#2ECC40] transition-colors">
-                  Webinars
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-[#2ECC40] transition-colors">
-                  Help Center
                 </a>
               </li>
             </ul>
