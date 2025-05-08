@@ -110,7 +110,7 @@ const HeroCarousel = () => {
             </a>
             <a href="#services" className="px-8 py-4 bg-transparent border border-white/30 text-white rounded-full font-medium hover:bg-white/10 transition-all flex items-center">
               <span>Explore Features</span>
-            </a>x
+            </a>
           </div>
           
           {/* Metrics */}
