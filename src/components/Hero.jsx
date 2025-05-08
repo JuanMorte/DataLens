@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useCarousel } from '../utils/hook';
+import useCarousel from './ui/HeroCarousel';
 import hero_bg1 from '@assets/hero-bg-1.jpg';
 import hero_bg2 from '@assets/hero-bg-2.webp';
 import hero_bg3 from '@assets/hero-bg-3.webp';
