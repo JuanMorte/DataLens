@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TestimonialCard = ({ name, title, quote, rating }) => {
-  // Function to render the appropriate star rating
+  // Start rating system
   const renderStars = (rating) => {
     const stars = [];
     
@@ -10,7 +10,7 @@ const TestimonialCard = ({ name, title, quote, rating }) => {
       stars.push(<i key={`star-${i}`} className="fa-solid fa-star"></i>);
     }
     
-    // Half star if needed
+    // Half stars
     if (rating % 1 !== 0) {
       stars.push(<i key="star-half" className="fa-solid fa-star-half-stroke"></i>);
     }

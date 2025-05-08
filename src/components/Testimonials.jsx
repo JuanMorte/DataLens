@@ -1,6 +1,7 @@
 import React from 'react';
 import TestimonialCard from './ui/TestimonialCard';
 
+// Testimonials (fake)
 const Testimonials = () => {
   const testimonials = [
     {
@@ -25,6 +26,7 @@ const Testimonials = () => {
 
   return (
     <section className="py-20 bg-gradient-to-b from-[#162527] to-[#1a2c30]">
+      {/* Testimonials Section */}
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Success Stories</h2>

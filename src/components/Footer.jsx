@@ -1,13 +1,12 @@
 import React from 'react';
-import Logo from '@assets/logo.png'; // Adjust the path as necessary
+import Logo from '@assets/logo.png'; 
 
 const Footer = () => {
   return (
     <footer className="bg-grey-600 border-t border-[#1a2c30]">
-      {/* Main Footer */}
+      {/* Basic footer content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
           <div>
             <div className="flex items-center mb-6">
               <img 
@@ -36,7 +35,6 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Quick Links */}
           <div>
             <h3 className="text-lg font-bold mb-6 text-black">Quick Links</h3>
             <ul className="space-y-3">
@@ -63,7 +61,6 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Resources */}
           <div>
             <h3 className="text-lg font-bold mb-6 text-black" >More</h3>
             <ul className="space-y-3">
@@ -126,7 +123,6 @@ const Footer = () => {
         </div>
       </div>
       
-      {/* Copyright */}
       <div className="border-t border-[#1a2c30] py-6">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">

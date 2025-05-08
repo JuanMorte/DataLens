@@ -4,6 +4,7 @@ import service_1 from '@assets/services_1.jpg';
 import service_3 from '@assets/services_3.avif'; 
 import service_2 from '@assets/services_2.jpg';
 
+// All our services
 const Services = () => {
   const servicesData = [
     {
@@ -11,7 +12,7 @@ const Services = () => {
       image: service_1, 
       title: "Optimize with DataLens",
       description: "Utilize your internal data for auditing and optimization to improve operational efficiency and decision-making.",
-      targetAudience: "Mid to large enterprises looking to streamline operations, CFOs, operations managers, and audit teams seeking to leverage internal data for better decision-making.",
+      targetAudience: "Mid to large enterprises, CFOs, operations managers, and audit teams.",
       details: [
         {
           title: "Data Integration",
@@ -29,10 +30,10 @@ const Services = () => {
     },
     {
       id: 2,
-      image: service_2, // Replace with actual image path
+      image: service_2, 
       title: "Research, Develop, Expand (RDE)",
       description: "Access comprehensive market data to explore new opportunities, research competitors, and expand your business.",
-      targetAudience: "Growth-stage companies, business development executives, entrepreneurs planning market expansion, and strategy consultants seeking reliable market intelligence.",
+      targetAudience: "Growth-stage companies, business executives, entrepreneurs, and strategy consultants.",
       details: [
         {
           title: "Competitor Analysis",
@@ -53,7 +54,7 @@ const Services = () => {
       image: service_3, 
       title: "DataLens Insights",
       description: "Stay informed with curated industry insights enriched by data science and expert analysis.",
-      targetAudience: "Investors, traders, market analysts, portfolio managers, and industry professionals who need timely, data-driven insights to guide strategic decisions.",
+      targetAudience: "Investors, traders, market analysts, portfolio managers, and industry professionals.",
       details: [
         {
           title: "Comprehensive Reports",
@@ -73,6 +74,7 @@ const Services = () => {
 
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-[#122023] to-[#162527]">
+      {/* Services Section */}
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useCarousel } from '../utils/hooks';
+import { useCarousel } from '../utils/hook';
 import hero_bg1 from '@assets/hero-bg-1.jpg';
 import hero_bg2 from '@assets/hero-bg-2.webp';
 import hero_bg3 from '@assets/hero-bg-3.webp';
-import Logo from '@assets/Logo.png';
 
 const HeroCarousel = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,10 +33,8 @@ const HeroCarousel = () => {
     { value: '42%', label: 'Time saved on reporting' }
   ];
   
-  // Use custom carousel hook
   const { currentIndex: currentSlide } = useCarousel(carouselSlides);
   
-  // Cycle through metrics
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentMetric((prev) => (prev + 1) % metrics.length);
@@ -46,7 +43,6 @@ const HeroCarousel = () => {
     return () => clearInterval(interval);
   }, [metrics.length]);
   
-  // Show animation after load
   useEffect(() => {
     setIsLoaded(true);
   }, []);
@@ -66,18 +62,12 @@ const HeroCarousel = () => {
             }}
           ></div>
         ))}
-        
-        {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#122023] via-[#122023]/60 to-[#122023] opacity-90 z-10"></div>
       </div>
       
-      {/* Content Container */}
+      {/* Content */}
       <div className="relative z-30 max-w-7xl mx-auto px-4 py-20 md:py-32 flex flex-col h-screen justify-center">
-        {/* Logo and Header */}
         <div className={`transition-all duration-1000 ease-out transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          
-          
-          {/* Carousel Headers */}
           <div className="relative h-32 md:h-40 mt-40">
             {carouselSlides.map((slide, index) => (
               <div
@@ -113,7 +103,6 @@ const HeroCarousel = () => {
             </a>
           </div>
           
-          {/* Metrics */}
           <div className="relative h-20 overflow-hidden">
             {metrics.map((metric, index) => (
               <div 
@@ -132,9 +121,6 @@ const HeroCarousel = () => {
               </div>
             ))}
           </div>
-          
-          {/* Carousel navigation dots */}
-        
         </div>
       </div>
     </section>

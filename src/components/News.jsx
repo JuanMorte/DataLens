@@ -57,7 +57,6 @@ const InsightsSection = () => {
           {/* Left Section - News Carousel */}
           <div className="w-full lg:w-2/3 bg-[#1a2c30]/50 rounded-xl overflow-hidden border border-[#1a2c30]">
             <div className="relative h-full">
-              {/* Carousel Content */}
               <div className="h-full">
                 {insightTeasers.map((teaser, index) => (
                   <div 
@@ -65,7 +64,6 @@ const InsightsSection = () => {
                     className={`transition-opacity duration-300 ${index === activeSlide ? 'block' : 'hidden'}`}
                   >
                     <div className="flex flex-col md:flex-row h-full">
-                      {/* Image */}
                       <div className="md:w-2/5 h-full flex-shrink-0">
                         <img 
                           src={teaser.image} 
@@ -73,8 +71,6 @@ const InsightsSection = () => {
                           className="w-full h-140 object-cover"
                         />
                       </div>
-                      
-                      {/* Content */}
                       <div className="md:w-3/5 p-6 flex flex-col">
                         <div className="flex justify-between items-center mb-2">
                           <span className="text-xs font-bold text-[#2ECC40]">{teaser.category}</span>
@@ -90,8 +86,6 @@ const InsightsSection = () => {
                   </div>
                 ))}
               </div>
-
-              {/* Carousel Controls */}
               <div className="absolute bottom-6 right-6 flex space-x-2">
                 <button 
                   onClick={handlePrev}

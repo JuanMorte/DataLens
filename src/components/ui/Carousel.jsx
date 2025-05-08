@@ -1,20 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-/**
- * A reusable carousel component
- * @param {Object} props
- * @param {Array} props.slides - Array of slides to be displayed
- * @param {Function} props.renderSlide - Function to render each slide, receives (slide, index, isActive)
- * @param {number} props.initialSlide - Initial slide index
- * @param {number} props.autoplayInterval - Autoplay interval in ms (0 to disable)
- * @param {boolean} props.showDots - Whether to show navigation dots
- * @param {boolean} props.showArrows - Whether to show navigation arrows
- * @param {string} props.dotsPosition - Position of dots ('inside-bottom', 'inside-top', 'outside-bottom')
- * @param {string} props.arrowsPosition - Position of arrows ('inside-center', 'inside-bottom', 'outside-center')
- * @param {string} props.dotActiveClass - CSS class for active dot
- * @param {string} props.dotInactiveClass - CSS class for inactive dot
- * @param {string} props.arrowClass - CSS class for arrows
- */
 const Carousel = ({
   slides = [],
   renderSlide,
@@ -30,22 +15,18 @@ const Carousel = ({
 }) => {
   const [activeSlide, setActiveSlide] = useState(initialSlide);
   
-  // Handler for going to the previous slide
   const handlePrev = useCallback(() => {
     setActiveSlide(prev => (prev > 0 ? prev - 1 : slides.length - 1));
   }, [slides.length]);
 
-  // Handler for going to the next slide
   const handleNext = useCallback(() => {
     setActiveSlide(prev => (prev < slides.length - 1 ? prev + 1 : 0));
   }, [slides.length]);
   
-  // Go to a specific slide
   const goToSlide = useCallback((index) => {
     setActiveSlide(index);
   }, []);
   
-  // Set up autoplay if interval is provided
   useEffect(() => {
     if (autoplayInterval > 0) {
       const interval = setInterval(() => {
@@ -56,7 +37,6 @@ const Carousel = ({
     }
   }, [autoplayInterval, handleNext]);
   
-  // Helper to determine dots container class based on position
   const getDotsContainerClass = () => {
     switch (dotsPosition) {
       case 'inside-bottom':
@@ -70,7 +50,6 @@ const Carousel = ({
     }
   };
   
-  // Helper to determine arrows container class based on position
   const getArrowsContainerClass = () => {
     switch (arrowsPosition) {
       case 'inside-center':
@@ -86,7 +65,6 @@ const Carousel = ({
 
   return (
     <div className="relative h-full">
-      {/* Carousel Content */}
       <div className="h-full">
         {slides.map((slide, index) => (
           <div 
@@ -98,7 +76,6 @@ const Carousel = ({
         ))}
       </div>
 
-      {/* Navigation Arrows */}
       {showArrows && slides.length > 1 && (
         <div className={getArrowsContainerClass()}>
           <button 
@@ -118,7 +95,6 @@ const Carousel = ({
         </div>
       )}
 
-      {/* Navigation Dots */}
       {showDots && slides.length > 1 && (
         <div className={getDotsContainerClass()}>
           {slides.map((_, index) => (

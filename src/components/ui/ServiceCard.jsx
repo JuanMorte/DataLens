@@ -22,7 +22,7 @@ const ServiceCard = ({ image, title, description, targetAudience, details }) => 
           <p className="text-gray-400">{targetAudience}</p>
         </div>
         
-        {/* Accordion Button */}
+        {/* Accordion */}
         <button 
           onClick={() => setIsExpanded(!isExpanded)} 
           className="w-full flex justify-between items-center bg-[#131613] text-[#2ECC40] font-medium hover:text-[#29B737] transition-colors"
@@ -32,8 +32,6 @@ const ServiceCard = ({ image, title, description, targetAudience, details }) => 
           <span>{isExpanded ? 'Show less' : 'Learn more'}</span>
           <i className={`fa-solid ${isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'} ml-2`}></i>
         </button>
-        
-        {/* Accordion Content */}
         <div 
           id={`accordion-${title.replace(/\s+/g, '-').toLowerCase()}`}
           className={`mt-4 overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-96' : 'max-h-0'}`}

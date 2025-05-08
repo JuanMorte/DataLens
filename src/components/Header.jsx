@@ -12,7 +12,7 @@ const Header = () => {
       setIsScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
-      const sections = ['services', 'insights', 'about us'];
+      const sections = ['services', 'insights'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (!element) return false;
@@ -34,15 +34,14 @@ const Header = () => {
       }`} 
     >
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-          {/* Logo */}
           <div className="flex items-center">
             <img src={Logo} alt="DataLens Logo" className="w-8 h-8 mr-2" />
             <h2 className="text-xl font-bold tracking-tight text-white">DataLens</h2>
           </div>
           
-          {/* Desktop Navigation */}
+          {/* Navigation Bar*/}
           <nav className="hidden md:flex space-x-8">
-            {['Services', 'Insights', 'About us'].map((item) => (
+            {['Services', 'Insights'].map((item) => (
               <a 
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -57,7 +56,6 @@ const Header = () => {
             ))}
           </nav>
           
-          {/* CTA Button */}
           <div className="hidden md:block">
             <a 
               href="#demo" 
