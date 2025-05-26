@@ -1,4 +1,3 @@
-import React from 'react';
 import ServiceCard from './ui/ServiceCard';
 import service_1 from '@assets/services_1.jpg';
 import service_3 from '@assets/services_3.avif'; 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useCarousel from './ui/HeroCarousel';
 import hero_bg1 from '@assets/hero-bg-1.jpg';
 import hero_bg2 from '@assets/hero-bg-2.webp';

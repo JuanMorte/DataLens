@@ -1,22 +1,25 @@
-import React from 'react';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import Home from '@components/Home';
+import Home from '@pages/Home';
+import ServicesPage from '@pages/ServicesPage';
+import AboutUsPage from '@pages/AboutUsPage';
+import InsightPage from '@pages/InsightPage';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="min-h-screen w-scree flex flex-col">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <Header />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path ="/services" element={<ServicesPage />} />
+          <Route path ="/insights" element={<InsightPage />} />
+          <Route path ="/about-us" element={<AboutUsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+      <Footer />
     </BrowserRouter>
   )
 }
