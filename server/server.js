@@ -1,0 +1,35 @@
+import express from 'express';
+import cors from 'cors';
+import connectDB from './db.js';
+import authRoutes from './routes/authRoutes.js';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv'
+
+dotenv.config({ path: '../.env'})
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(cors()); // Allows cross-origin requests from frontend
+app.use(express.json());
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+app.use('/api/auth', authRoutes);
+
+app.use(express.static(path.join(__dirname, '..')))
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../index.html'))
+})
+
+// Start server
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log('Frontend: https://localhost:5173');
+    console.log(`Backend API: https://localhost:${PORT}`)
+});
+});

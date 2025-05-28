@@ -5,22 +5,25 @@ import Home from '@pages/Home';
 import ServicesPage from '@pages/ServicesPage';
 import AboutUsPage from '@pages/AboutUsPage';
 import InsightPage from '@pages/InsightPage';
+import { AuthProvider } from '@context/Auth'
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Header />
-      <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path ="/services" element={<ServicesPage />} />
-          <Route path ="/insights" element={<InsightPage />} />
-          <Route path ="/about-us" element={<AboutUsPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </main>
-      <Footer />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Header />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path ="/services" element={<ServicesPage />} />
+            <Route path ="/insights" element={<InsightPage />} />
+            <Route path ="/about-us" element={<AboutUsPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 

@@ -1,58 +1,130 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import ReactDOM from 'react-dom';
+import { useAuth } from '@context/useAuth'
 
-const SignInModal = ({ isOpen, onClose}) => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+const SignInModal = ({ isOpen, onClose }) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState('signin')
 
-    if (!isOpen) return null;
+  const {login} = useAuth()
 
-    return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-full max-w-md">
-                <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold">Sign In</h3>
-                <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
-                    &times;
-                </button>
-                </div>
-                
-                <form className="space-y-4">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Email</label>
-                    <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                    required
-                    />
-                </div>
-                
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Password</label>
-                    <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                    required
-                    />
-                </div>
-                
-                <button
-                    type="submit"
-                    className="w-full bg-[#2ECC40] text-white py-2 px-4 rounded hover:bg-[#29B737] transition-colors"
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    setIsLoading(true)
+    try {
+        const endpoint = (activeTab === 'signin' ?  '/api/auth/login' : '/api/auth/register')
+        const res = await fetch(`http://localhost:3000${endpoint}`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({email, password})
+        })
+        console.log("Fetch was succcesful!")
+
+        const data = await res.json();
+        if (!res.ok) {
+            throw new Error(data.error || 'Authentication failed')
+        }
+
+        login(data.token)
+        onClose()
+        setEmail('')
+        setPassword('')
+    } catch (err) {
+        setError(err.message || 'An error occurred')
+    } finally {
+        setIsLoading(false)
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return ReactDOM.createPortal(
+    <div className="fixed inset-0 bg-black/20 flex items-center justify-center z-50" onClick={onClose} > 
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative" onClick={(e) => e.stopPropagation()} > 
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 font-size-100"
+          aria-label="Close modal"
+        >
+          &times;
+        </button>
+        
+        <div className="flex mb-6">
+            <button className={`px-4 py-2 ${activeTab === 'signin'
+                ? 'border-b-2 border-[#2ECC40] text-[#2ECC40]'
+                : 'text-gray-500'}`}
+                onClick={() => setActiveTab('signin')}
                 >
-                    Sign In
-                </button>
-                </form>
-                
-                <div className="mt-4 text-center text-sm">
-                <p>Don't have an account? <a href="#" className="text-[#2ECC40]">Sign up</a></p>
-                </div>
-            </div>
-            </div>
-    );
+                Sign in
+            </button>
+            <button
+                className={`px-4 py-2 ${activeTab === 'register' 
+                ? 'border-b-2 border-[#2ECC40] text-[#2ECC40]' 
+                : 'text-gray-500'}`}
+                onClick={() => setActiveTab('register')}
+            >
+            Register
+          </button>
+        </div>
+
+        <h2 className="text-xl font-bold mb-4">{activeTab === 'signin' ? 'Sign In' : 'Register'}</h2>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1" htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError('');
+              }}
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+              disabled={isLoading}
+            />
+          </div>
+          
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1" htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError('');
+              }}
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+              disabled={isLoading}
+            />
+          </div>
+          
+          <button 
+            type="submit" 
+            className="w-full bg-[#2ECC40] text-white py-2 rounded hover:bg-green-600 transition-colors"
+            disabled={isLoading}
+          >
+            {isLoading 
+              ? (activeTab === 'signin' ? 'Signing in...' : 'Registering...') 
+              : (activeTab === 'signin' ? 'Sign In' : 'Create Account')}
+          </button>
+        </form>
+      </div>
+    </div>,
+    document.getElementById('modal-root') || document.body
+  );
 };
 
 export default SignInModal;

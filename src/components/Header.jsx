@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import Logo from '@assets/Logo.png';
 import { Link } from 'react-router-dom'; 
-import SignInModal from '@components/SignInModal.jsx'; // Adjust the import path as necessary
+import SignInModal from '@components/SignInModal.jsx';
+import { useAuth } from '@context/useAuth'
 
 const Header = () => {
+  const { user, logout} = useAuth()
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -11,7 +13,7 @@ const Header = () => {
   // Handle scroll for sticky header
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 300);
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -27,9 +29,9 @@ const dict = {
 
   return (
     <header 
-      className={`fixed w-screen top-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-grey-900 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5'
-      }`} 
+      className={`w-full h-20 ${isScrolled ? 'fixed top-0 z-40' : 'relative'} transition-all duration-300 ${
+          isScrolled ? 'bg-grey-900/90 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center">
@@ -55,18 +57,26 @@ const dict = {
             ))}
           </nav>
         
-        {/* Sign In Button */}
+        {/* Sign In/Out Button */}
         <div className="hidden md:flex items-center space-x-4">
+          {user ? (
+            <button
+              onClick={logout}
+              className="px-5 py-2 bg-[#2ECC40] rounded font-medium shadow-md hover:shadow-lg transition-all hover:bg-white"
+              >
+                Sign Out
+            </button>
+          ) : (
           <button 
             onClick={() => setIsSignInOpen(true)}
             className="px-5 py-2 bg-[#2ECC40] rounded font-medium shadow-md hover:shadow-lg transition-all hover:bg-white"
           >
             Sign In
           </button>
-        </div>
+          )
+          }
 
-        {/* Mobile menu button (keep your existing) */}
-        {/* Mobile menu content (update links to use Link component) */}
+        </div>
       </div>
 
       {/* Sign In Modal */}

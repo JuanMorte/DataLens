@@ -25,7 +25,7 @@ const ServiceCard = ({ image, title, description, targetAudience, details }) => 
         {/* Accordion */}
         <button 
           onClick={() => setIsExpanded(!isExpanded)} 
-          className="w-full flex justify-between items-center bg-[#131613] text-[#2ECC40] font-medium hover:text-[#29B737] transition-colors"
+          className="w-full flex justify-between items-center px-3 py-2 rounded-xl bg-[#131613] text-[#2ECC40] font-medium hover:text-[#29B737] transition-colors"
           aria-expanded={isExpanded}
           aria-controls={`accordion-${title.replace(/\s+/g, '-').toLowerCase()}`}
         >

@@ -58,7 +58,7 @@ const ContactForm = () => {
                 <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-1">Email</label>
                 <input 
                   type="email" 
-                  id="email" 
+                  id="email2" 
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full bg-[#122023] border border-[#1a2c30] rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#2ECC40] focus:border-transparent"
