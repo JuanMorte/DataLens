@@ -26,14 +26,13 @@ const SignInModal = ({ isOpen, onClose }) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
         })
-        console.log("Fetch was succcesful!")
 
         const data = await res.json();
         if (!res.ok) {
             throw new Error(data.error || 'Authentication failed')
         }
-
-        login(data.token)
+        console.log(data)
+        login(data.token, data._id, data.email, data.isSubscribed)
         onClose()
         setEmail('')
         setPassword('')

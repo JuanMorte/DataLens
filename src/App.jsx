@@ -5,7 +5,11 @@ import Home from '@pages/Home';
 import ServicesPage from '@pages/ServicesPage';
 import AboutUsPage from '@pages/AboutUsPage';
 import InsightPage from '@pages/InsightPage';
+import NewsDetail from '@pages/NewsDetail'
+import AllNews from '@pages/AllNews';
 import { AuthProvider } from '@context/Auth'
+import ProtectedRoute from './components/ProtectedRoute';
+import SubscriptionPage from '@pages/Subscription';
 
 const App = () => {
   return (
@@ -18,6 +22,9 @@ const App = () => {
             <Route path ="/services" element={<ServicesPage />} />
             <Route path ="/insights" element={<InsightPage />} />
             <Route path ="/about-us" element={<AboutUsPage />} />
+            <Route path ="/insights/:slug" element={<ProtectedRoute><NewsDetail /></ProtectedRoute>} />
+            <Route path ="/insights/allnews" element={<ProtectedRoute><AllNews /></ProtectedRoute>} />
+            <Route path ="/subscribe" element={<SubscriptionPage/>} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>

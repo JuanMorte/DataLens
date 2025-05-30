@@ -25,3 +25,6 @@ dist-ssr
 
 .env
 app.rest
+news.txt
+data
+newsGen.js

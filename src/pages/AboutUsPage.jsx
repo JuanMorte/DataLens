@@ -41,50 +41,7 @@ const AboutUsPage = () => {
     }
   ];
 
-  const stats = [
-    { number: "500+", label: "Clients Served", icon: "fa-users" },
-    { number: "10TB+", label: "Data Processed Daily", icon: "fa-database" },
-    { number: "99.9%", label: "Uptime Guarantee", icon: "fa-clock" },
-    { number: "25+", label: "Industry Sectors", icon: "fa-industry" }
-  ];
 
-  const timeline = [
-    {
-      year: "2019",
-      title: "Company Founded",
-      description: "DataLens was established with a vision to democratize data-driven decision making for businesses of all sizes."
-    },
-    {
-      year: "2020",
-      title: "First Major Client",
-      description: "Secured partnership with Fortune 500 financial services company, processing over $2B in daily transactions."
-    },
-    {
-      year: "2021",
-      title: "Series A Funding",
-      description: "Raised $15M in Series A funding to expand our analytics platform and hire world-class talent."
-    },
-    {
-      year: "2022",
-      title: "International Expansion",
-      description: "Expanded operations to Europe and Asia, serving clients across 15 countries worldwide."
-    },
-    {
-      year: "2023",
-      title: "AI Integration",
-      description: "Launched our proprietary AI-powered forecasting engine, improving prediction accuracy by 300%."
-    },
-    {
-      year: "2024",
-      title: "Industry Recognition",
-      description: "Named 'Best Data Analytics Platform' by FinTech Innovation Awards and featured in Forbes 30 Under 30."
-    },
-    {
-      year: "2025",
-      title: "Market Leadership",
-      description: "Achieved market-leading position with 500+ enterprise clients and $50M+ ARR."
-    }
-  ];
 
   const values = [
     {
@@ -110,55 +67,10 @@ const AboutUsPage = () => {
   ];
 
   return (
-    <div className="min-w-screen bg-gradient-to-b from-[#1a2c30] to-[#121b1d] text-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1a2c30] via-[#1a2c30]/80 to-transparent z-10"></div>
-        <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center opacity-20"></div>
-        
-        <div className="relative z-20 max-w-7xl mx-auto px-4 py-20">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Transforming Data Into 
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#2ECC40] to-[#29B737]">
-                Strategic Advantage
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-              We're a team of data scientists, engineers, and industry experts passionate about helping businesses unlock the power of their data to make smarter decisions and drive growth.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button className="bg-[#2ECC40] text-black font-bold py-4 px-8 rounded-lg hover:bg-[#29B737] transition-colors">
-                Our Services
-              </button>
-              <button className="border border-[#2ECC40] text-[#2ECC40] font-bold py-4 px-8 rounded-lg hover:bg-[#2ECC40] hover:text-black transition-colors">
-                Contact Us
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 bg-[#1a2c30]/30">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#2ECC40]/20 rounded-full mb-4">
-                  <i className={`fa-solid ${stat.icon} text-2xl text-[#2ECC40]`}></i>
-                </div>
-                <div className="text-3xl md:text-4xl font-bold text-[#2ECC40] mb-2">{stat.number}</div>
-                <div className="text-gray-300 font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+    <div className="min-w-screen text-white">
       {/* Mission Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-20 bg-gradient-to-b from-[#172629] to to-[#192427]">
+        <div className="max-w-7xl mx-auto px-4 ">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl font-bold mb-6">Our Mission</h2>
@@ -200,7 +112,7 @@ const AboutUsPage = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-[#1a2c30]/30">
+      <section className="py-20 bg-gradient-to-b from-[#192427] to-[#172427]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Our Values</h2>
@@ -223,43 +135,8 @@ const AboutUsPage = () => {
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Our Journey</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              From startup to market leader, here's how we've grown and evolved over the years.
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-0.5 h-full w-0.5 bg-[#2ECC40]/30"></div>
-            
-            <div className="space-y-12">
-              {timeline.map((item, index) => (
-                <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                  {/* Timeline dot */}
-                  <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#2ECC40] rounded-full border-4 border-[#1a2c30] z-10"></div>
-                  
-                  {/* Content */}
-                  <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                    <div className="bg-[#1a2c30]/50 rounded-xl p-6 border border-[#1a2c30]">
-                      <div className="text-2xl font-bold text-[#2ECC40] mb-2">{item.year}</div>
-                      <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                      <p className="text-gray-300 leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Team Section */}
-      <section className="py-20 bg-[#1a2c30]/30">
+      <section className="py-20 bg-gradient-to-b from-[#172427] to-[#1a2c30]/30">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Leadership Team</h2>
@@ -302,25 +179,6 @@ const AboutUsPage = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
-          <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-            Join hundreds of companies that trust DataLens to turn their data into competitive advantage. 
-            Let's discuss how we can help you achieve your goals.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button className="bg-[#2ECC40] text-black font-bold py-4 px-8 rounded-lg hover:bg-[#29B737] transition-colors">
-              Schedule Consultation
-            </button>
-            <button className="border border-[#2ECC40] text-[#2ECC40] font-bold py-4 px-8 rounded-lg hover:bg-[#2ECC40] hover:text-black transition-colors">
-              View Case Studies
-            </button>
           </div>
         </div>
       </section>

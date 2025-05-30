@@ -1,38 +1,28 @@
-import { useState } from 'react';
-import news_1 from '@assets/news_1.jpg';
-import news_2 from '@assets/news_2.jpg';
-import news_3 from '@assets/news_3.jpg';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const InsightsSection = () => {
+  const navigate = useNavigate();
   const [activeSlide, setActiveSlide] = useState(0);
-  
-  // Sample insight teasers
-  const insightTeasers = [
-    {
-      id: 1,
-      category: "MARKET ANALYSIS",
-      date: "May 5, 2025",
-      title: "AI Adoption Surges 400% in Financial Sector - Winners and Losers Revealed",
-      excerpt: "Our exclusive analysis shows an unprecedented acceleration in AI implementation across financial institutions, with clear patterns emerging between early adopters and laggards...",
-      image: news_1 
-    },
-    {
-      id: 2,
-      category: "ECONOMIC FORECAST",
-      date: "May 6, 2025",
-      title: "Hidden Signals Point to Major Currency Shift in Q3 2025",
-      excerpt: "Our data scientists have identified five overlooked indicators suggesting a significant realignment of major currencies that most analysts have missed...",
-      image: news_2
-    },
-    {
-      id: 3,
-      category: "INDUSTRY SPOTLIGHT",
-      date: "May 7, 2025",
-      title: "The Next Supply Chain Crisis: Data Reveals Critical Vulnerabilities",
-      excerpt: "Exclusive access to shipping and inventory data across 17 countries shows alarming patterns that could trigger the next global supply chain disruption...",
-      image: news_3 
-    }
-  ];
+  const [insightTeasers, setInsightTeasers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/api/news'); 
+        const data = await res.json();
+        setInsightTeasers(data);
+      } catch (err) {
+        console.log('Error fetching news:', err);
+        setError('Failed to load news.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchNews();
+  }, []);
 
   const handlePrev = () => {
     setActiveSlide(prev => (prev > 0 ? prev - 1 : insightTeasers.length - 1));
@@ -41,6 +31,14 @@ const InsightsSection = () => {
   const handleNext = () => {
     setActiveSlide(prev => (prev < insightTeasers.length - 1 ? prev + 1 : 0));
   };
+
+  if (loading) {
+    return <div className="text-center text-gray-300 py-20">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center text-red-400 py-20">{error}</div>;
+  }
 
   return (
     <section id="insights" className="py-20 bg-gradient-to-b from-[#1a2c30] to-[#121b1d]">
@@ -60,25 +58,35 @@ const InsightsSection = () => {
               <div className="h-full">
                 {insightTeasers.map((teaser, index) => (
                   <div 
-                    key={teaser.id} 
-                    className={`transition-opacity duration-300 ${index === activeSlide ? 'block' : 'hidden'}`}
-                  >
+                    key={teaser._id } 
+                    className={`transition-opacity duration-300 ${index === activeSlide ? 'block' : 'hidden'}`}>
                     <div className="flex flex-col md:flex-row h-full">
                       <div className="md:w-2/5 h-full flex-shrink-0">
                         <img 
-                          src={teaser.image} 
-                          alt={teaser.title} 
+                          src={`https://${import.meta.env.VITE_AWS_BUCKET_NAME}.s3.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/${teaser.imageurl}`}
+                          alt={teaser.title}
                           className="w-full h-140 object-cover"
                         />
                       </div>
                       <div className="md:w-3/5 p-6 flex flex-col">
                         <div className="flex justify-between items-center mb-2">
-                          <span className="text-xs font-bold text-[#2ECC40]">{teaser.category}</span>
-                          <span className="text-xs text-gray-400">{teaser.date}</span>
+                          <span className="text-xs font-bold text-white">
+                            {teaser.tags.map((tags, index) => {
+                              return (
+                                <span key={index} 
+                                  className="inline-block bg-[#2ECC40]/20 text-[#2ECC40] px-4 py-2 rounded-full mr-3">
+                                  {tags}
+                                </span>);})}</span>
+                          <span className="text-xs text-gray-400">
+                            {new Date(teaser.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                          </span>
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold mb-4">{teaser.title}</h3>
-                        <p className="text-gray-300 mb-6 flex-grow">{teaser.excerpt}</p>
-                        <button className="bg-white text-black font-bold py-2 px-4 rounded hover:bg-[#2ECC40] transition-colors w-fit">
+                        <h3 className="text-xl md:text-2xl font-bold mb-5">{teaser.title}</h3>
+                        <p className="text-gray-300 mb-6 flex-grow line-clamp-3 max-h-[70px] tracking-wide">{teaser.content}</p>
+                        <button
+                          className="bg-white text-black font-bold py-2 px-4 rounded hover:bg-[#2ECC40] transition-colors w-fit mt-auto"
+                          onClick={() => navigate(`/insights/${teaser.slug}`)}
+                        >
                           Read More
                         </button>
                       </div>
@@ -100,7 +108,6 @@ const InsightsSection = () => {
                   <i className="fa-solid fa-chevron-right"></i>
                 </button>
               </div>
-
             </div>
           </div>
 
@@ -134,12 +141,13 @@ const InsightsSection = () => {
               </div>
 
               <div className="flex flex-col space-y-4">
-                <button className="bg-white text-black font-bold py-3 px-6 rounded hover:bg-[#29B737] transition-colors">
+                <button onClick ={() => navigate('/subscribe')}
+                  className="bg-white text-black font-bold py-3 px-6 rounded hover:bg-[#29B737] transition-colors">
                   Subscribe Now
                 </button>
-                <a href="#" className="text-center text-white hover:text-[#29B737] transition-colors">
-                  Learn more about our subscription plans
-                </a>
+                <p className="text-center text-white transition-colors">
+                  Subscribe today for the best insights
+                </p>
               </div>
             </div>
           </div>
