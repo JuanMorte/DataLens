@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import express from 'express'
 dotenv.config({path: '.../.env'})
 
+
 const router = express.Router()
 
 // Register
@@ -18,12 +19,19 @@ router.post('/register', async (req, res) => {
 
         const user = await User.create({ 
             email, 
-            password  
+            password  ,
+            subscription: {
+                isSubscribed: false,
+                plan: 'none',
+                startDate: null,
+                endDate: null,
+                autoRenew: false
+            }
         });
         
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET,{ expiresIn: '24h' });
 
-        res.status(201).json({ token });
+        res.status(201).json({ token, _id: user._id, email:user.email, isSubscribed: user.subscription.isSubscribed});
     } catch (err) {
         console.error('Register error:', err);
         res.status(500).json({ error: 'Error creating user' });
@@ -45,7 +53,7 @@ router.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
-        res.json({ token });
+        res.json({ token, _id: user._id, email:user.email, isSubscribed: user.subscription.isSubscribed});
     } catch (err) {
         console.error('Login error:', err);
         res.status(500).json({ error: 'Error logging in' });

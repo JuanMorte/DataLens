@@ -11,7 +11,20 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  subscription: {
+    isSubscribed: { type: Boolean, default: false },
+    plan: { type: String, default: 'free' },
+    startDate: Date,
+    endDate: Date,
+    autoRenew: { type: Boolean, default: true }
+  }, 
+  paymentHistory: [{
+    amount: Number,
+    date: Date,
+    plan: String,
+    transactionId: String
+  }]
 }, { timestamps: true });
 
 // Hash password before saving
