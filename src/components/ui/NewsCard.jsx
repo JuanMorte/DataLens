@@ -10,7 +10,7 @@ const NewsCard = ({ index }) => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/api/news/${index}`);
+                const res = await fetch(`http://https://datalens-32py.onrender.com/api/news/${index}`);
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error);
                 setNews(data);
