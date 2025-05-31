@@ -10,7 +10,7 @@ const AllNews = () => {
     useEffect(() => {
         const fetchAllNews = async () => {
             try {
-                const res = await fetch('http://https://datalens-32py.onrender.com/api/news');
+                const res = await fetch('https://datalens-32py.onrender.com/api/news');
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error);
                 setNews(data);

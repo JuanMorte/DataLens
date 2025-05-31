@@ -21,7 +21,7 @@ const SignInModal = ({ isOpen, onClose }) => {
     setIsLoading(true)
     try {
         const endpoint = (activeTab === 'signin' ?  '/api/auth/login' : '/api/auth/register')
-        const res = await fetch(`http://https://datalens-32py.onrender.com/${endpoint}`, {
+        const res = await fetch(`https://datalens-32py.onrender.com/${endpoint}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
