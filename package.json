@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm install && npm run dev",
+    "build": "npm run dev",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node server/server.js"
+    "start": "cd server && node server.js"
   },
   "dependencies": {
     "@faker-js/faker": "^9.8.0",
