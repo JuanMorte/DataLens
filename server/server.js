@@ -14,9 +14,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://data-lens-git-main-alexanders-projects-6defbbc2.vercel.app/',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
+    
 })); 
 app.use(express.json());
 
