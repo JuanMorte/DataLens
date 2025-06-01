@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
 import useCarousel from './ui/HeroCarousel';
-import hero_bg1 from '@assets/hero-bg-1.jpg';
-import hero_bg2 from '@assets/hero-bg-2.webp';
-import hero_bg3 from '@assets/hero-bg-3.webp';
 
 const HeroCarousel = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -11,17 +8,17 @@ const HeroCarousel = () => {
   // Carousel content
   const carouselSlides = [
     {
-      backgroundImage: hero_bg1,
+      backgroundImage: "hero-bg-1.jpg",
       heading: "See beyond the data.",
       subheading: "Turn data into actionable insights with real-time analytics, competitor benchmarking, and industry trend forecasting."
     },
     {
-      backgroundImage: hero_bg2,
+      backgroundImage: "hero-bg-2.webp",
       heading: "Visualize your success.",
       subheading: "Transform complex information into clear visualizations that drive strategic decisions and business growth."
     },
     {
-      backgroundImage: hero_bg3,
+      backgroundImage: "hero-bg-3.webp",
       heading: "Predict market trends.",
       subheading: "Stay ahead of the competition with AI-powered forecasting and data-driven market intelligence."
     }
@@ -56,7 +53,7 @@ const HeroCarousel = () => {
             key={index}
             className="absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out bg-center bg-cover"
             style={{
-              backgroundImage: `url(${slide.backgroundImage})`,
+              backgroundImage: `url(${`https://${import.meta.env.VITE_AWS_BUCKET_NAME}.s3.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/images/${slide.backgroundImage}`})`,
               opacity: currentSlide === index ? 0.5 : 0,
               zIndex: currentSlide === index ? 1 : 0
             }}

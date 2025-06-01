@@ -10,7 +10,7 @@ const NewsCard = ({ index }) => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(`https://datalens-32py.onrender.com/api/news/${index}`);
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/news/${index}`);
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error);
                 setNews(data);
@@ -30,7 +30,7 @@ const NewsCard = ({ index }) => {
 
     return (
         <div
-              className="flex flex-col justify-between h-140 bg-[#1a2c30]/50 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+              className="flex flex-col justify-between h-140 bg-[#1a2c30]/50 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:border-[#2ECC40]/30">
             {news.imageurl && (
                 <div className="w-full h-48 overflow-hidden">
                     <img 

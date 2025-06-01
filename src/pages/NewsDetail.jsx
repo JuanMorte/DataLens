@@ -11,7 +11,7 @@ const NewsDetail = () => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(`https://datalens-32py.onrender.com/api/news/${slug}`);
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/news/${slug}`);
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error);
                 setNews(data);

@@ -1,14 +1,11 @@
 import ServiceCard from './ui/ServiceCard';
-import service_1 from '@assets/services_1.jpg';
-import service_3 from '@assets/services_3.avif'; 
-import service_2 from '@assets/services_2.jpg';
 
 // All our services
 const Services = () => {
   const servicesData = [
     {
       id: 1,
-      image: service_1, 
+      image: 'services_1.jpg', 
       title: "Optimize with DataLens",
       description: "Utilize your internal data for auditing and optimization to improve operational efficiency and decision-making.",
       targetAudience: "Mid to large enterprises, CFOs, operations managers, and audit teams.",
@@ -29,7 +26,7 @@ const Services = () => {
     },
     {
       id: 2,
-      image: service_2, 
+      image: 'services_2.jpg', 
       title: "Research, Develop, Expand (RDE)",
       description: "Access comprehensive market data to explore new opportunities, research competitors, and expand your business.",
       targetAudience: "Growth-stage companies, business executives, entrepreneurs, and strategy consultants.",
@@ -50,7 +47,7 @@ const Services = () => {
     },
     {
       id: 3,
-      image: service_3, 
+      image: 'services_3.avif', 
       title: "DataLens Insights",
       description: "Stay informed with curated industry insights enriched by data science and expert analysis.",
       targetAudience: "Investors, traders, market analysts, portfolio managers, and industry professionals.",

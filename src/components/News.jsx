@@ -11,7 +11,7 @@ const InsightsSection = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await fetch('https://datalens-32py.onrender.com/api/news'); 
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/news`); 
         const data = await res.json();
         setInsightTeasers(data);
       } catch (err) {

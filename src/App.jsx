@@ -10,27 +10,35 @@ import AllNews from '@pages/AllNews';
 import { AuthProvider } from '@context/Auth'
 import ProtectedRoute from './components/ProtectedRoute';
 import SubscriptionPage from '@pages/Subscription';
+import Login from '@pages/Login';
+
+const AppContent = () => {
+  return (
+    <BrowserRouter>
+      <Header />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path ="/services" element={<ServicesPage />} />
+          <Route path ="/insights" element={<InsightPage />} />
+          <Route path ="/about-us" element={<AboutUsPage />} />
+          <Route path ="/insights/:slug" element={<ProtectedRoute><NewsDetail /></ProtectedRoute>} />
+          <Route path ="/insights/allnews" element={<ProtectedRoute><AllNews /></ProtectedRoute>} />
+          <Route path ="/subscribe" element={<SubscriptionPage/>} />
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/login" element = {<Login />} />
+        </Routes>
+      </main>
+      <Footer />
+    </BrowserRouter>
+  )
+}
 
 const App = () => {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path ="/services" element={<ServicesPage />} />
-            <Route path ="/insights" element={<InsightPage />} />
-            <Route path ="/about-us" element={<AboutUsPage />} />
-            <Route path ="/insights/:slug" element={<ProtectedRoute><NewsDetail /></ProtectedRoute>} />
-            <Route path ="/insights/allnews" element={<ProtectedRoute><AllNews /></ProtectedRoute>} />
-            <Route path ="/subscribe" element={<SubscriptionPage/>} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </BrowserRouter>
-    </AuthProvider>
+  <AuthProvider>
+      <AppContent />
+  </AuthProvider>
   )
 }
 

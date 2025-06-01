@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ServiceCard = ({ image, title, description, targetAudience, details }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -7,7 +7,7 @@ const ServiceCard = ({ image, title, description, targetAudience, details }) => 
     <div className="bg-[#1a2c30]/50 rounded-xl overflow-hidden border border-[#1a2c30] transition-all hover:shadow-lg hover:shadow-[#2ECC40]/10 hover:border-[#2ECC40]/30">
       <div className="h-48 flex items-center justify-center bg-[#1a2c30]/30 overflow-hidden">
         <img 
-          src={image} 
+          src={`https://${import.meta.env.VITE_AWS_BUCKET_NAME}.s3.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/images/${image}`} 
           alt={`${title} service`} 
           className="object-cover w-full h-full"
         />

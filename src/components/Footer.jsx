@@ -1,5 +1,3 @@
-import Logo from '@assets/Logo.png'; 
-
 const Footer = () => {
   return (
     <footer className="bg-white border-t border-black">
@@ -9,14 +7,14 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-6">
               <img 
-                src={Logo} 
+                src={`https://${import.meta.env.VITE_AWS_BUCKET_NAME}.s3.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/images/Logo.png`} 
                 alt="DataLens Logo" 
                 className="w-10 h-10 mr-3" 
               />
               <h2 className="text-2xl font-bold tracking-tight text-black">DataLens</h2>
             </div>
             <p className="text-gray-400 mb-6">
-              Transforming raw data into clear business intelligence for forward-thinking organizations.
+              This website is a demo project. All company names, products, and data presented are fictional.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-[#2ECC40] transition-colors">
@@ -125,7 +123,7 @@ const Footer = () => {
       <div className="border-t border-[#1a2c30] py-6">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            ©️ {new Date().getFullYear()} DataLens Inc. All rights reserved.
+            ©️ {new Date().getFullYear()} Alexander P
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
@@ -141,7 +139,6 @@ const Footer = () => {
         </div>
       </div>
       
-      {/* External CSS Dependencies Notice */}
       <div className="sr-only">
         This component requires Font Awesome icons to be properly displayed.
         Add the following to your HTML:

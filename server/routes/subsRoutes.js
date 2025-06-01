@@ -7,7 +7,7 @@ router.put('/subscribe/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
     const { subscription } = req.body;
-    console.log(subscription)
+
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       {

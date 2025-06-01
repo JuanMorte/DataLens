@@ -43,7 +43,7 @@ const SubscribePage = () => {
       const end = (selectedPlan === 'Monthly'
               ? new Date(now.getFullYear(), now.getMonth() + 1, now.getDate())
               : new Date(now.getFullYear() + 1, now.getMonth(), now.getDate()) )
-      const response = await fetch(`https://datalens-32py.onrender.com/api/subscribe/${user._id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/subscribe/${user._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

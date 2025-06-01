@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import NewsCard from '../components/ui/NewsCard';
-import news_1 from '@assets/news_1.jpg';
-import news_3 from '@assets/news_3.jpg';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const InsightsPage = () => {
@@ -14,12 +12,12 @@ const InsightsPage = () => {
   const slugs = ["global-shipping-costs-soar-due-to-red-sea-disruptions", "private-credit-boom-as-banks-retreat-from-risky-loans", "bitcoin-surges-past-60k-as-institutional-demand-grows", "retail-trading-activity-spikes-amid-meme-stock-revival"] 
   // Sample data - replace with backend data
   const topNews = {
-    title: "Federal Reserve Signals Potential Rate Cut as Inflation Shows Signs of Cooling",
-    excerpt: "In a surprising turn of events, Federal Reserve officials hinted at a possible interest rate reduction following the latest inflation data that shows a 0.3% month-over-month decline...",
+    title: "Bond Market Turmoil as Long-Term Yields Hit 15-Year Highs",
+    excerpt: "The fixed income market has experienced significant turbulence, with the 10-year Treasury yield briefly touching 4.6%, its highest level since 2007. This move reflects growing expectations that interest rates may remain higher for longer, as...",
     image: news_1,
     category: "BREAKING NEWS",
-    timestamp: "2 hours ago",
-    author: "DataLens Research Team"
+    timestamp: "8/10/2023",
+    author: "Marcus Chen"
   };
 
   const monthlyReport = {
@@ -68,11 +66,10 @@ const InsightsPage = () => {
                   {topNews.excerpt}
                 </p>
                 <div className="flex gap-4">
-                  <button className="bg-[#2ECC40] text-black font-bold py-3 px-6 rounded hover:bg-[#29B737] transition-colors">
+                  <button 
+                  onClick={() => navigate(`/insights/bond-market-turmoil-as-long-term-yields-hit-15-year-highs`)}
+                  className="bg-[#2ECC40] text-black font-bold py-3 px-8 rounded hover:bg-[#29B737] transition-colors">
                     Read Full Article
-                  </button>
-                  <button className="border border-[#2ECC40] text-[#2ECC40] font-bold py-3 px-6 rounded hover:bg-[#2ECC40] hover:text-black transition-colors">
-                    Share
                   </button>
                 </div>
               </div>

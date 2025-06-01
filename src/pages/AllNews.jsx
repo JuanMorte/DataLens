@@ -10,7 +10,7 @@ const AllNews = () => {
     useEffect(() => {
         const fetchAllNews = async () => {
             try {
-                const res = await fetch('https://datalens-32py.onrender.com/api/news');
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/news`);
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error);
                 setNews(data);
@@ -44,13 +44,13 @@ const AllNews = () => {
             <div className="space-y-6">
                 {news.map((item) => (
                     <div key={item._id} 
-                         className="flex bg-[#1a2c30]/50 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+                         className="flex bg-black/10 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-white">
                         {item.imageurl && (
-                            <div className="w-[250px] h-[300px]">
+                            <div>
                                 <img 
                                     src={`https://${import.meta.env.VITE_AWS_BUCKET_NAME}.s3.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/${item.imageurl}`}
                                     alt={item.title}
-                                    className="w-full h-100 object-cover"
+                                    className="object-cover h-[400px] w-[250px]"
                                 />
                             </div>
                         )}

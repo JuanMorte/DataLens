@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Logo from '@assets/Logo.png';
 import { Link } from 'react-router-dom'; 
 import SignInModal from '@components/SignInModal.jsx';
 import { useAuth } from '@context/useAuth'
@@ -46,7 +45,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 flex items-center h-full">
         {/* Logo */}
         <div className="flex items-center flex-shrink-0">
-          <img src={Logo} alt="DataLens Logo" className="w-8 h-8 mr-2" />
+          <img src={`https://${import.meta.env.VITE_AWS_BUCKET_NAME}.s3.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/images/Logo.png`} alt="DataLens Logo" className="w-8 h-8 mr-2" />
           <h2 className="text-xl font-bold tracking-tight text-white">DataLens</h2>
         </div>
         

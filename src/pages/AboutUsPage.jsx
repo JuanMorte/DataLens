@@ -1,5 +1,4 @@
-import React from 'react';
-import about_us from '@assets/about-us.jpeg'; 
+
 
 const AboutUsPage = () => {
   const teamMembers = [
@@ -8,7 +7,7 @@ const AboutUsPage = () => {
       name: "Dr. Alexandra Chen",
       role: "Chief Executive Officer & Founder",
       bio: "Former Goldman Sachs quantitative analyst with 15 years of experience in financial modeling and market prediction. PhD in Applied Mathematics from MIT.",
-      image: "/api/placeholder/300/400",
+      image: "dr-alexandra-chen.jpg",
       linkedin: "#",
       expertise: ["Quantitative Analysis", "Risk Management", "Financial Modeling"]
     },
@@ -17,7 +16,7 @@ const AboutUsPage = () => {
       name: "Marcus Rodriguez",
       role: "Chief Technology Officer",
       bio: "Ex-Google engineer who led data infrastructure teams. Specializes in building scalable analytics platforms and machine learning pipelines.",
-      image: "/api/placeholder/300/400",
+      image: "marcus-rodriguez.jpg",
       linkedin: "#",
       expertise: ["Machine Learning", "Data Engineering", "Cloud Architecture"]
     },
@@ -26,7 +25,7 @@ const AboutUsPage = () => {
       name: "Sarah Kim",
       role: "Head of Research",
       bio: "Former Bloomberg terminal architect with deep expertise in real-time market data analysis and economic forecasting methodologies.",
-      image: "/api/placeholder/300/400",
+      image: "sarah-kim.jpg",
       linkedin: "#",
       expertise: ["Economic Research", "Market Analysis", "Data Visualization"]
     },
@@ -35,7 +34,7 @@ const AboutUsPage = () => {
       name: "David Thompson",
       role: "Director of Client Solutions",
       bio: "15+ years in management consulting at McKinsey, helping Fortune 500 companies transform their data strategies and decision-making processes.",
-      image: "/api/placeholder/300/400",
+      image: "david-thompson.jpg",
       linkedin: "#",
       expertise: ["Strategy Consulting", "Business Intelligence", "Client Relations"]
     }
@@ -102,7 +101,7 @@ const AboutUsPage = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-[#2ECC40]/20 to-[#29B737]/20 rounded-2xl transform rotate-3"></div>
               <img 
-                src={about_us}
+                src={`https://${import.meta.env.VITE_AWS_BUCKET_NAME}.s3.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/images/about-us.jpeg`}
                 alt="DataLens Team"
                 className="relative rounded-2xl shadow-2xl"
               />
@@ -149,7 +148,7 @@ const AboutUsPage = () => {
             {teamMembers.map(member => (
               <div key={member.id} className="bg-[#1a2c30]/50 rounded-xl overflow-hidden border border-[#1a2c30] hover:border-[#2ECC40]/30 transition-colors">
                 <img 
-                  src={member.image} 
+                  src={`https://${import.meta.env.VITE_AWS_BUCKET_NAME}.s3.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/images/${member.image}`} 
                   alt={member.name}
                   className="w-full h-64 object-cover"
                 />
