@@ -14,7 +14,7 @@ const InsightsPage = () => {
   const topNews = {
     title: "Bond Market Turmoil as Long-Term Yields Hit 15-Year Highs",
     excerpt: "The fixed income market has experienced significant turbulence, with the 10-year Treasury yield briefly touching 4.6%, its highest level since 2007. This move reflects growing expectations that interest rates may remain higher for longer, as...",
-    image: news_1,
+    image: "news_5.avif",
     category: "BREAKING NEWS",
     timestamp: "8/10/2023",
     author: "Marcus Chen"
@@ -23,7 +23,7 @@ const InsightsPage = () => {
   const monthlyReport = {
     title: "Global Market Outlook: Q2 2025 Strategic Analysis",
     summary: "Our comprehensive analysis reveals key trends shaping global markets in the second quarter. Rising geopolitical tensions, technological disruptions, and shifting monetary policies create both opportunities and challenges for investors. Key highlights include emerging market resilience, continued AI adoption across sectors, and evolving ESG investment strategies.",
-    coverImage: news_3,
+    coverImage: "news_7.webp",
     publishDate: "May 1, 2025",
     pages: "47 pages",
     downloads: "1,247"
@@ -43,7 +43,7 @@ const InsightsPage = () => {
             <div className="flex flex-col lg:flex-row">
               <div className="lg:w-1/2">
                 <img 
-                  src={topNews.image} 
+                  src={`https://${import.meta.env.VITE_AWS_BUCKET_NAME}.s3.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/images/${topNews.image}`} 
                   alt={topNews.title}
                   className="w-full h-120 object-cover"
                 />
@@ -102,9 +102,9 @@ const InsightsPage = () => {
               <div className="lg:w-1/3">
                 <div className="relative">
                   <img 
-                    src={monthlyReport.coverImage} 
+                    src={`https://${import.meta.env.VITE_AWS_BUCKET_NAME}.s3.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/images/${monthlyReport.coverImage}`} 
                     alt="Monthly Report Cover"
-                    className="object-cover w-full h-100"
+                    className="object-cover w-full h-108"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 right-4">
